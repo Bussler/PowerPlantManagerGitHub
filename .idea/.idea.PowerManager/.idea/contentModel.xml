@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\hohma\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_PowerManager.2052156127.00" t="ExcludeRecursive" />
+    <e p="C:\Users\hohma\OneDrive\Dokumente\Github\PowerManager" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="BOXOPHOBIC" t="Include">
+          <e p="Skybox - Cubemap Extended" t="Include">
+            <e p="Shaders" t="Include">
+              <e p="Skybox - Cubemap Extended.shader" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="KraftwerkScript.cs" t="Include" />
+        <e p="Plugins" t="Include">
+          <e p="Editor" t="Include">
+            <e p="JetBrains" t="Include">
+              <e p="Unity3DRider.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ProducerScript.cs" t="Include" />
+        <e p="RessourceUser.cs" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="CameraMovement.cs" t="Include" />
+          <e p="CameraScript.cs" t="Include" />
+          <e p="HoverButtonScript.cs" t="Include" />
+          <e p="Inputslider.cs" t="Include" />
+          <e p="Isocam.cs" t="Include" />
+          <e p="Kraftwerk.cs" t="Include" />
+          <e p="LoadScenes.cs" t="Include" />
+          <e p="Lodlevel.cs" t="Include" />
+          <e p="ManageCanvas.cs" t="Include" />
+          <e p="MenuBehaviour.cs" t="Include" />
+          <e p="MouseHover.cs" t="Include" />
+          <e p="Pair.cs" t="Include" />
+          <e p="REsourceManager.cs" t="Include" />
+          <e p="Stadt.cs" t="Include" />
+          <e p="Stromverbindung.cs" t="Include" />
+          <e p="water.cs" t="Include" />
+        </e>
+        <e p="VillageScript.cs" t="Include" />
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="PowerManager.sln" t="IncludeFlat" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
