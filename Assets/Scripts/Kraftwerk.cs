@@ -8,6 +8,7 @@ using UnityEngine.Timeline;
 public class Kraftwerk : MonoBehaviour {
 
     public float stromErzeugung;
+    public static float stromPerMinute=0;
 
     public bool canKohle;
     public bool canOil;
@@ -28,9 +29,9 @@ public class Kraftwerk : MonoBehaviour {
 
     public GameObject prefabOil;
     public GameObject prefabAtom;
-    private int kohleBonus = 3;
-    private int oelBonus = 4;
-    private int uranBonus = 6;
+    private float kohleBonus = 3;
+    private float oelBonus = 4;
+    private float uranBonus = 6;
 	// Use this for initialization
 	void Start () {
         cs = FindObjectOfType<CameraScript>();
@@ -70,6 +71,59 @@ public class Kraftwerk : MonoBehaviour {
             stromErzeugung += 1;
             levelUpButtons.SetActive(true); 
         }
+
+        //berechnen des stromPerMinute, um zu berechnen, wie viel strom reduziert werden muss, wenn dieser im REsourcemanager 0 erreicht
+        //yea, I know its ugly but I wanted to implement this fast and its not like we produced the best code ever in this project, so here we go
+        if (canKohle==false&&canOil==false&&canUran==false)
+        {
+            stromPerMinute = stromErzeugung;
+        }
+        else
+        {
+            if (canKohle && canOil && canUran)
+            {
+                stromPerMinute = kohleBonus + oelBonus + uranBonus + stromErzeugung;
+            }
+            else
+            {
+                if (canKohle && canOil)
+                {
+                    stromPerMinute = kohleBonus + oelBonus + stromErzeugung;
+                }
+                else
+                {
+                    if (canKohle && canUran)
+                    {
+                        stromPerMinute = kohleBonus + uranBonus + stromErzeugung;
+                    }
+                    else
+                    {
+                        if (canUran && canOil)
+                        {
+                            stromPerMinute =oelBonus + uranBonus + stromErzeugung;
+                        }
+                        else
+                        {
+                            if (canUran)
+                            {
+                                stromPerMinute = uranBonus + stromErzeugung;
+                            }
+                            if (canOil)
+                            {
+                                stromPerMinute = oelBonus + stromErzeugung;
+                            }
+                            if (canKohle)
+                            {
+                                stromPerMinute = kohleBonus + stromErzeugung;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        
+
 	}
 
     public void generateStrom()

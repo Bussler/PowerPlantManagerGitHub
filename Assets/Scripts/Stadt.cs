@@ -11,8 +11,6 @@ public class Stadt : MonoBehaviour {
         Metall,
         Uran,
         Kohle
-
-
     }
 
     public float stadtBonus=1;
@@ -124,9 +122,7 @@ public class Stadt : MonoBehaviour {
             else
             {
                 return;
-                //float diff = REsourceManager.strom - REsourceManager.usedStrom;
-                //InputStrom = diff;//auf groestmoeglichen strom setzen
-                //REsourceManager.usedStrom = REsourceManager.strom;
+                //if this happens the inputStrom will be updated accordingly in REsourceManager
             }
 
         }

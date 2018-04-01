@@ -10,13 +10,7 @@ public class ManageCanvas : MonoBehaviour {
 
     public GameObject menu1;
     public GameObject StadtMenu;
-    
-    public ParticleSystem kohleSystem;
-
-    public ParticleSystem atomSystem;
-
-    public ParticleSystem gasSystem;
-
+ 
     public static  bool spawnParticles;
 
     public static bool umrandungGesetzt = false;
@@ -43,7 +37,6 @@ public class ManageCanvas : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("input");
             handleMouseInput(); //method to get mouseinput
         }
 
@@ -51,24 +44,17 @@ public class ManageCanvas : MonoBehaviour {
 
     void handleMouseInput()
     {
-        Debug.Log("mousehandle");
         if (MouseHover.isOver == true)
         {
-            Debug.Log("test3");
             return;
         }
         Debug.Log("test");
-        RaycastHit hit;
+        RaycastHit hit;//this will be used to access the object which was hit by the raycast(e.g. to upgrade cities)
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("test2");
-
-            
-
             if (hit.transform.tag.Equals("Plane"))//when clicking on the plane, spawn the normal menu
             {
-                Debug.Log("raycasthit");
                 //changing the position of the menü
                 mousePos = Input.mousePosition;
                 menu1.transform.position = mousePos;
@@ -105,7 +91,6 @@ public class ManageCanvas : MonoBehaviour {
             }
             if (hit.transform.tag.Equals("Stadt"))
             {
-                Debug.Log("Stadt");
                 mousePos = Input.mousePosition;
                 StadtMenu.transform.position = mousePos;
                 umrandung.SetActive(true);
@@ -179,27 +164,11 @@ public class ManageCanvas : MonoBehaviour {
 
         if (CameraScript.grid[(int)(pos.x), (int)(pos.z)] == null)
         {
-            GameObject kraft = Instantiate(GObject, pos, GObject.transform.rotation);
+            GameObject kraft = Instantiate(GObject, new Vector3(pos.x, 0.5f, pos.z), GObject.transform.rotation);
 
             CameraScript.grid[(int)(kraft.transform.position.x), (int)(kraft.transform.position.z)] = kraft;
 
             kraft.transform.localScale *= (cs.getScale().x);
-            if (spawnParticles)
-            {
-                //Wenn das Objekt ein Kohlekraftwerk ist, spawne ein Kohlepartikelsystem etwas darüber
-                if (GObject.tag == "Kohle")
-                {
-                    Instantiate(kohleSystem, new Vector3(pos.x, pos.y + 1, pos.z), Quaternion.identity);
-                }//Wenn das Objekt ein Atomkraftwerk ist, spawne ein Atompartikelsystem etwas darüber
-                else if (GObject.tag == "Atom")
-                {
-                    Instantiate(atomSystem, new Vector3(pos.x, pos.y + 1, pos.z), Quaternion.identity);
-                }//Wenn das Objekt ein Gaskraftwerk ist, spawne ein Gaskraftwerksystem etwas darüber
-                else if (GObject.tag == "Gas")
-                {
-                    Instantiate(gasSystem, new Vector3(pos.x, pos.y + 1, pos.z), Quaternion.identity);
-                }
-            }
         }
 
         menu1.SetActive(false);

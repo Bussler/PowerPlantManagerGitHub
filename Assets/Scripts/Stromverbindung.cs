@@ -48,12 +48,6 @@ public class Stromverbindung : MonoBehaviour {
         }
     }
 
-    public void UpdateModel()
-    {
-
-
-    }
-
     public bool CheckStrom()
     {
         hasChecked=true;
@@ -172,12 +166,9 @@ public class Stromverbindung : MonoBehaviour {
                 }
             }
         }
-        Debug.Log("keine verbindung");
             return false;
         
     }
-
-
     public bool RecSuchen(int x, int y)
     {
         //stromkraftwerk suchen
@@ -337,10 +328,5 @@ public class Stromverbindung : MonoBehaviour {
     
 
         }
-    }
-
-    private void OnDestroy()
-    {
-        
     }
 }

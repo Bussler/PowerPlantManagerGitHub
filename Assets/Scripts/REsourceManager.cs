@@ -31,6 +31,8 @@ public class REsourceManager : MonoBehaviour {
 
     public GameObject[] Städte = new GameObject[4];
 
+    public GameObject Sturm;
+
 
 
     // Update is called once per frame
@@ -65,16 +67,46 @@ public class REsourceManager : MonoBehaviour {
             if (strom-usedStrom<0)
             {
                 strom = 0;
-                //TODO zufaelliges Ressourcenkraftwerk input so weit runterregeln, dass wieder auf null liegt
-                //-> z.b. auf ein zufaelliges kraftwerk im 2d array zugreifen: Methode schreiben, die nach 
-                //parameteruebergabe so lange zufaellige kraftwerke auswaehlt und deren inputstrom absenkt, bis
-                //paramter strom gespart wurde
+
+                //das städte array wird so lange nach einer stadt durchgesucht, bis eine gefunden wird, deren stroomverbrauch reguliert werden kann
+                float diff = usedStrom - Kraftwerk.stromPerMinute;//der input strom einer stadt wird um die errechnete differenz verringert, so ist der usedStrom gleich dem produziertem strom
+
+                for (int i=0;i<Städte.Length;i++)
+                {
+                    if (diff<=0.0f)
+                    {
+                        break;//falls die differenz richtig angepasst wurde, soll abgebrochen werden
+                    }
+
+                    if (Städte[i].GetComponent<Stadt>().istAngeschlossen)//es wurde eine angeschlossene stadt gefunden
+                    {
+                        if (Städte[i].GetComponent<Stadt>().InputStrom>=diff)//die gesammte differenz kann von der gefundenen stadt abgezogen werden
+                        {
+                            Städte[i].GetComponent<Stadt>().ChangeInputStrom(Städte[i].GetComponent<Stadt>().InputStrom-diff);
+                            break;
+                        }
+                        else//shitty heavy, die gefundene stadt verbraucht weniger strom als die differenz, es muessen also noch weitere städte reguliert werden
+                        {
+                            float currentDiff = diff - Städte[i].GetComponent<Stadt>().InputStrom;
+                            Städte[i].GetComponent<Stadt>().ChangeInputStrom(0);
+                            diff-= currentDiff;
+                        }
+                    }
+                }
+
             }
             else
             {
                 strom -= usedStrom;
             }
-            
+
+            //each second, there is a little chance that the storm will spawn.
+            float random = Random.Range(0,100);
+            if (random>=99&&Sturm.activeInHierarchy==false)
+            {
+                Sturm.SetActive(true);
+            }
+
             time = 0;
         }
 
